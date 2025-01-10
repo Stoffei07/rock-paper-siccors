@@ -5,5 +5,8 @@
 	<div>
 		<img src="/images/logo.svg" alt="Logo Rock Paper Scissors" />
 	</div>
-	<div>Servus</div>
+	<div>
+		<div>Score</div>
+		<div>0</div>
+	</div>
 </div>
