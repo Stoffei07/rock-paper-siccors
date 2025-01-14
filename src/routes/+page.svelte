@@ -8,9 +8,9 @@
 		<img src="/images/logo.svg" alt="Logo Rock Paper Scissors" />
 	</div>
 	<div>
-		<div class="w-auto rounded-md bg-white p-6">
-			<div class="">Score</div>
-			<div class="">12</div>
+		<div class="w-28 rounded-md bg-white p-4">
+			<div class="barlow-600 flex justify-center tracking-widest text-[#2a46c0]">Score</div>
+			<div class="barlow-700 flex justify-center text-4xl text-[#3b4363]">12</div>
 		</div>
 	</div>
 </div>
