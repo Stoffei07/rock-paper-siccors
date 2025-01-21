@@ -1,5 +1,5 @@
 <script>
-	let step = $state(1);
+	let step = $state(2);
 </script>
 
 <div
@@ -14,6 +14,7 @@
 		<div class="barlow-700 flex justify-center text-4xl text-[#3b4363]">12</div>
 	</div>
 </div>
+
 {#if step === 1}
 	<div
 		class="bg-img grid aspect-square w-full max-w-[400px] grid-cols-4 grid-rows-2 gap-[10%] bg-center"
@@ -32,6 +33,52 @@
 		>
 	</div>
 {/if}
+
+{#if step === 2}
+	<div class="flex w-[80vw] max-w-[400px] justify-between gap-8">
+		<div class="flex w-[50%] flex-col items-center gap-4">
+			<button
+				class="mt-20 flex aspect-square w-full items-center justify-center rounded-full border-[15px]
+			border-yellow-500 bg-white"><img src="/images/icon-paper.svg" alt="" /></button
+			>
+			<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
+				YOU PICKED
+			</div>
+		</div>
+		<div class="flex w-[50%] flex-col items-center gap-4">
+			<button
+				class="mt-20 flex aspect-square w-full items-center justify-center rounded-full border-[15px] border-blue-500 bg-white"
+				><img src="/images/icon-scissors.svg" alt="" /></button
+			>
+
+			<div class="barlow-600 flex items-center text-center text-xl tracking-widest text-white">
+				THE HOUSE PICKED
+			</div>
+		</div>
+	</div>
+{/if}
+<!-- {#if step === 2}
+	<div
+		class="grid aspect-square w-full max-w-[500px] grid-cols-2 grid-rows-2 gap-[20%] gap-y-2 bg-center"
+	>
+		<button
+			class="mt-20 flex aspect-square w-full items-center justify-center rounded-full border-[15px]
+			border-yellow-500 bg-white"><img src="/images/icon-paper.svg" alt="" /></button
+		>
+
+		<button
+			class="mt-20 flex aspect-square w-full items-center justify-center rounded-full border-[15px] border-blue-500 bg-white"
+			><img src="/images/icon-scissors.svg" alt="" /></button
+		>
+
+		<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
+			YOU PICKED
+		</div>
+		<div class="barlow-600 flex items-center text-xl tracking-widest text-white">
+			THE HOUSE PICKED
+		</div>
+	</div>
+{/if} -->
 
 <button
 	class="barlow-600 flex w-[125px] items-center justify-center rounded-lg border-2 border-[#FFF] p-2 tracking-widest text-white lg:self-end"
