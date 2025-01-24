@@ -19,7 +19,7 @@
 		if (selection === selectionMachine) {
 			console.log('Draw');
 		} else if (
-			(selection === 'rock' && selectionMachine === 'scissors') ||
+			0(selection === 'rock' && selectionMachine === 'scissors') ||
 			(selection === 'scissors' && selectionMachine === 'paper') ||
 			(selection === 'paper' && selectionMachine === 'rock')
 		) {
