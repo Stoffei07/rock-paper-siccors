@@ -47,8 +47,8 @@
 		</div>
 		<div class="flex w-[50%] flex-col items-center gap-4">
 			<button
-				class="mt-20 flex aspect-square w-full items-center justify-center rounded-full border-[15px] border-blue-500 bg-white"
-				><img src="/images/icon-scissors.svg" alt="" /></button
+				class="mt-20 flex aspect-square w-full items-center justify-center rounded-full bg-[#141539] text-[#141539] opacity-45"
+				>.</button
 			>
 
 			<div class="barlow-600 flex items-center text-center text-xl tracking-widest text-white">
