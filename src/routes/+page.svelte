@@ -104,9 +104,14 @@
 
 {#if showRules}
 	<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-		<div class="rounded-lg bg-white p-4">
-			<img src="/images/image-rules.svg" alt="Rules" />
-			<button class="mt-4 rounded bg-red-500 p-2 text-white" onclick={toggleRules}>X</button>
+		<div class="relative rounded-lg bg-white p-6">
+			<button
+				class="absolute right-4 top-4 rounded bg-red-500 p-2 text-white"
+				onclick={toggleRules}
+			>
+				X
+			</button>
+			<img class="mx-auto mt-8" src="/images/image-rules.svg" alt="Rules" />
 		</div>
 	</div>
 {/if}
