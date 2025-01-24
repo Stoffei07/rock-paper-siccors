@@ -1,4 +1,6 @@
 <script>
+	import GameButton from '$lib/components/GameButton.svelte';
+
 	let step = $state(1);
 	let selection = $state('null');
 	let selectionMachine = $state('null');
@@ -6,7 +8,8 @@
 	let showRules = $state(false);
 
 	function saveSelection() {
-		selection = event.target.id;
+		console.log(event.currentTarget);
+		selection = event.currentTarget.id;
 		step++;
 	}
 	function getRandomSelection() {
@@ -51,45 +54,25 @@
 	<div
 		class="bg-img grid aspect-square w-full max-w-[400px] grid-cols-4 grid-rows-2 gap-[10%] bg-center"
 	>
-		<button
-			class="border-gradient-paper col-span-2 flex aspect-square w-full items-center justify-center rounded-full border-[15px] border-yellow-500
-			bg-white"
-			id="paper"
-			onclick={saveSelection}><img src="/images/icon-paper.svg" alt="Paper" /></button
-		>
-		<button
-			class="col-span-2 flex aspect-square w-full items-center justify-center rounded-full border-[15px] border-blue-500 bg-white"
-			onclick={saveSelection}
-			id="sciccors"><img src="/images/icon-scissors.svg" alt="Sciccors" /></button
-		>
-		<button
-			class="col-span-2 col-start-2 flex aspect-square w-full items-center justify-center rounded-full border-[15px] border-red-500 bg-white"
-			onclick={saveSelection}
-			id="rock"
-			><img src="/images/icon-rock.svg" alt="Rock" />
-		</button>
+		<GameButton symbol="paper" click={saveSelection} />
+		<GameButton symbol="scissors" click={saveSelection} />
+		<GameButton symbol="rock" click={saveSelection} center />
 	</div>
 {/if}
 
 {#if step === 2}
 	<div class="flex w-[80vw] max-w-[400px] justify-between gap-8">
 		<div class="flex w-[50%] flex-col items-center gap-4">
-			<button
-				class="mt-20 flex aspect-square w-full items-center justify-center rounded-full border-[15px]
-			border-yellow-500 bg-white"><img src="/images/icon-paper.svg" alt="" /></button
-			>
+			<GameButton symbol={selection} />
 			<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
 				YOU PICKED
 			</div>
 		</div>
-		<div class="flex w-[50%] flex-col items-center gap-4">
-			<button
-				class="mt-20 flex aspect-square w-full items-center justify-center rounded-full bg-[#141539] text-[#141539] opacity-45"
-				>.</button
-			>
 
-			<div class="barlow-600 flex items-center text-center text-xl tracking-widest text-white">
-				THE HOUSE PICKED
+		<div class="flex w-[50%] flex-col items-center gap-4">
+			<GameButton symbol={selection} />
+			<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
+				YOU PICKED
 			</div>
 		</div>
 	</div>
@@ -104,9 +87,14 @@
 
 {#if showRules}
 	<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-		<div class="rounded-lg bg-white p-4">
-			<img src="/images/image-rules.svg" alt="Rules" />
-			<button class="mt-4 rounded bg-red-500 p-2 text-white" onclick={toggleRules}>X</button>
+		<div class="relative rounded-lg bg-white p-6">
+			<button
+				class="absolute right-4 top-4 rounded bg-red-500 p-2 text-white"
+				onclick={toggleRules}
+			>
+				X
+			</button>
+			<img class="mx-auto mt-8" src="/images/image-rules.svg" alt="Rules" />
 		</div>
 	</div>
 {/if}
