@@ -7,6 +7,7 @@
 
 	function saveSelection() {
 		selection = event.target.id;
+		step++;
 	}
 	function getRandomSelection() {
 		const options = ['paper', 'rock', 'scissors'];
@@ -67,6 +68,30 @@
 			id="rock"
 			><img src="/images/icon-rock.svg" alt="Rock" />
 		</button>
+	</div>
+{/if}
+
+{#if step === 2}
+	<div class="flex w-[80vw] max-w-[400px] justify-between gap-8">
+		<div class="flex w-[50%] flex-col items-center gap-4">
+			<button
+				class="mt-20 flex aspect-square w-full items-center justify-center rounded-full border-[15px]
+			border-yellow-500 bg-white"><img src="/images/icon-paper.svg" alt="" /></button
+			>
+			<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
+				YOU PICKED
+			</div>
+		</div>
+		<div class="flex w-[50%] flex-col items-center gap-4">
+			<button
+				class="mt-20 flex aspect-square w-full items-center justify-center rounded-full bg-[#141539] text-[#141539] opacity-45"
+				>.</button
+			>
+
+			<div class="barlow-600 flex items-center text-center text-xl tracking-widest text-white">
+				THE HOUSE PICKED
+			</div>
+		</div>
 	</div>
 {/if}
 
