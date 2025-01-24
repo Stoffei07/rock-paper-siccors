@@ -46,7 +46,7 @@
 		<div class="barlow-700 flex justify-center text-4xl text-[#3b4363]">{score}</div>
 	</div>
 </div>
-{#if step === 1}
+{#if step === 1 && selection === 'null'}
 	<div
 		class="bg-img grid aspect-square w-full max-w-[400px] grid-cols-4 grid-rows-2 gap-[10%] bg-center"
 	>
@@ -64,8 +64,9 @@
 		<button
 			class="col-span-2 col-start-2 flex aspect-square w-full items-center justify-center rounded-full border-[15px] border-red-500 bg-white"
 			onclick={saveSelection}
-			id="rock"><img src="/images/icon-rock.svg" alt="Rock" /></button
-		>
+			id="rock"
+			><img src="/images/icon-rock.svg" alt="Rock" />
+		</button>
 	</div>
 {/if}
 
