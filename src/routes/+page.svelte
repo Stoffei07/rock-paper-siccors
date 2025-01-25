@@ -6,21 +6,7 @@
 	let selectionMachine = $state('null');
 	let score = $state(0);
 	let showRules = $state(false);
-	let result = $state(false);
-
-	function compareSelections() {
-		if (selection === selectionMachine) {
-			result = false;
-		} else if (
-			(selection === 'rock' && selectionMachine === 'scissors') ||
-			(selection === 'scissors' && selectionMachine === 'paper') ||
-			(selection === 'paper' && selectionMachine === 'rock')
-		) {
-			result === true && score++;
-		} else {
-			result === false;
-		}
-	}
+	let result = $state('null');
 
 	function saveSelection() {
 		console.log(event.currentTarget);
@@ -28,6 +14,7 @@
 		step++;
 		compareSelections();
 	}
+
 	function getRandomSelection() {
 		const options = ['paper', 'rock', 'scissors'];
 		return options[Math.floor(Math.random() * options.length)];
@@ -35,8 +22,39 @@
 
 	selectionMachine = getRandomSelection();
 
+	function compareSelections() {
+		if (selection === selectionMachine) {
+			result = 'tie';
+		} else if (
+			(selection === 'rock' && selectionMachine === 'scissors') ||
+			(selection === 'scissors' && selectionMachine === 'paper') ||
+			(selection === 'paper' && selectionMachine === 'rock')
+		) {
+			result = 'win';
+			score++;
+		} else {
+			result = 'lose';
+		}
+	}
+
 	function toggleRules() {
 		showRules = !showRules;
+	}
+
+	function nextRound() {
+		step = 1;
+		selection = 'null';
+		selectionMachine = 'null';
+		selectionMachine = getRandomSelection();
+	}
+
+	function tryAgain() {
+		step = 1;
+		selection = 'null';
+		selectionMachine = 'null';
+		score = 0;
+		result = 'null';
+		selectionMachine = getRandomSelection();
 	}
 </script>
 
@@ -65,24 +83,53 @@
 {#if step === 2}
 	<div class="flex w-[80vw] max-w-[400px] justify-between gap-8">
 		<div class="flex w-[50%] flex-col items-center gap-4">
-			<GameButton symbol={selection} />
-			<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
-				YOU PICKED
-			</div>
+			{#if selection !== 'null'}
+				<GameButton symbol={selection} />
+				<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
+					YOU PICKED
+				</div>
+			{/if}
 		</div>
 
 		<div class="flex w-[50%] flex-col items-center gap-4">
-			<GameButton symbol={selectionMachine} />
-			<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
-				HOUSE PICKED
-			</div>
+			{#if selectionMachine !== 'null'}
+				<GameButton symbol={selectionMachine} />
+				<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
+					HOUSE PICKED
+				</div>
+			{/if}
 		</div>
 	</div>
 
 	<div class="mt-8 flex w-full max-w-screen-lg justify-center">
 		<div class="barlow-600 flex justify-center tracking-widest text-[#2a46c0]">
-			YOU {result === true ? 'WIN' : 'LOST'}
+			{result === 'tie' ? 'TIE' : `YOU ${result.toUpperCase()}`}
 		</div>
+	</div>
+
+	<div class="mt-4 flex w-full max-w-screen-lg justify-center">
+		{#if result === 'win'}
+			<button
+				class="barlow-600 flex w-[125px] items-center justify-center rounded-lg border-2 border-[#FFF] bg-green-500 p-2 tracking-widest text-white"
+				onclick={nextRound}
+			>
+				NEXT
+			</button>
+		{:else if result === 'lose'}
+			<button
+				class="barlow-600 flex w-[125px] items-center justify-center rounded-lg border-2 border-[#FFF] bg-red-500 p-2 tracking-widest text-white"
+				onclick={tryAgain}
+			>
+				TRY AGAIN
+			</button>
+		{:else}
+			<button
+				class="barlow-600 flex w-[125px] items-center justify-center rounded-lg border-2 border-[#FFF] bg-yellow-500 p-2 tracking-widest text-white"
+				onclick={nextRound}
+			>
+				NEXT
+			</button>
+		{/if}
 	</div>
 {/if}
 

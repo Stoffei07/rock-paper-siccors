@@ -14,7 +14,7 @@
 
 <button
 	class={`col-span-2 flex aspect-square w-full items-center justify-center rounded-full border-[15px] bg-white ${borderColorClass} ${centerClass}`}
-	on:click={click}
+	onclick={click}
 	id={symbol}
 >
 	<img src={`/images/icon-${symbol}.svg`} alt={symbol} />
