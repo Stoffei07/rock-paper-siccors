@@ -6,11 +6,27 @@
 	let selectionMachine = $state('null');
 	let score = $state(0);
 	let showRules = $state(false);
+	let result = $state(false);
+
+	function compareSelections() {
+		if (selection === selectionMachine) {
+			result = false;
+		} else if (
+			(selection === 'rock' && selectionMachine === 'scissors') ||
+			(selection === 'scissors' && selectionMachine === 'paper') ||
+			(selection === 'paper' && selectionMachine === 'rock')
+		) {
+			result === true && score++;
+		} else {
+			result === false;
+		}
+	}
 
 	function saveSelection() {
 		console.log(event.currentTarget);
 		selection = event.currentTarget.id;
 		step++;
+		compareSelections();
 	}
 	function getRandomSelection() {
 		const options = ['paper', 'rock', 'scissors'];
@@ -18,20 +34,6 @@
 	}
 
 	selectionMachine = getRandomSelection();
-
-	function compareSelections() {
-		if (selection === selectionMachine) {
-			console.log('Draw');
-		} else if (
-			0(selection === 'rock' && selectionMachine === 'scissors') ||
-			(selection === 'scissors' && selectionMachine === 'paper') ||
-			(selection === 'paper' && selectionMachine === 'rock')
-		) {
-			console.log('Win') && score++;
-		} else {
-			console.log('Lost');
-		}
-	}
 
 	function toggleRules() {
 		showRules = !showRules;
@@ -70,10 +72,16 @@
 		</div>
 
 		<div class="flex w-[50%] flex-col items-center gap-4">
-			<GameButton symbol={selection} />
+			<GameButton symbol={selectionMachine} />
 			<div class="barlow-600 flex flex-col items-center text-xl tracking-widest text-white">
-				YOU PICKED
+				HOUSE PICKED
 			</div>
+		</div>
+	</div>
+
+	<div class="mt-8 flex w-full max-w-screen-lg justify-center">
+		<div class="barlow-600 flex justify-center tracking-widest text-[#2a46c0]">
+			YOU {result === true ? 'WIN' : 'LOST'}
 		</div>
 	</div>
 {/if}

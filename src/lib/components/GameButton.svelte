@@ -1,14 +1,21 @@
 <script>
 	import { colors } from '$lib/colorCodes';
-	let { symbol, click, center } = $props();
-	function saveSelection() {
-		console.log('saveSelection');
-	}
+	export let symbol;
+	export let click;
+	export let center = false;
+
+	let borderColorClass = '';
+	if (symbol === 'paper') borderColorClass = 'border-yellow-500';
+	else if (symbol === 'scissors') borderColorClass = 'border-blue-500';
+	else if (symbol === 'rock') borderColorClass = 'border-red-500';
+
+	let centerClass = center ? 'col-start-2' : '';
 </script>
 
 <button
-	class={`col-span-2 flex aspect-square w-full items-center justify-center rounded-full border-[15px] border-${colors[symbol]}-500 bg-white ${center ? 'col-start-2' : ''}`}
-	onclick={click}
+	class={`col-span-2 flex aspect-square w-full items-center justify-center rounded-full border-[15px] bg-white ${borderColorClass} ${centerClass}`}
+	on:click={click}
 	id={symbol}
-	><img src={`/images/icon-${symbol}.svg`} alt={symbol} />
+>
+	<img src={`/images/icon-${symbol}.svg`} alt={symbol} />
 </button>

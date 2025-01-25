@@ -1,5 +1,5 @@
-export let colors = {
-	rock: 'red',
-	paper: 'blue',
-	scissors: 'yellow'
+export const colors = {
+	paper: 'yellow',
+	scissors: 'blue',
+	rock: 'red'
 };
